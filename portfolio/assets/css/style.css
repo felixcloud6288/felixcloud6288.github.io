@@ -1,0 +1,38 @@
+.selected{
+    background:#4aaaa5;
+    color: #ffffff
+}
+header{
+    background: #ffffff;
+    color: #777777;
+    border:#cccccc;
+    font-family: 'Georgia', Times, 'Times New Roman', serif;
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+}
+body{
+    background-size:cover;
+    border: #dddddd;
+    font-family: 'Arial', 'Helvetica Neue', Helvetica, sans-serif;
+    width: 960px;
+    margin-left: auto;
+    margin-right: auto;
+    background:#ffffff;
+    background-image: url('../images/checkerboard-cross.png');
+}
+.tag{
+    border-bottom-style: solid;
+    border-color: red;
+}
+footer{
+    border-top: 8px solid #4aaaa5;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}
+#image{
+    float: left;
+}
