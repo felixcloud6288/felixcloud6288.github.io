@@ -68,5 +68,18 @@ footer{
     clear: both;
 }
 textarea{
-    font-size: auto;
+    height: 18px;
+    width: 100%;
+}
+#message{
+    height:150px;
+}
+button{
+    width:120px;
+    height:40px;
+    font-size: 20px;
+    padding:2px;
+    color: #ffffff;
+    background: #4aaaa5;
+    
 }
