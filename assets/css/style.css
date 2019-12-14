@@ -66,4 +66,7 @@ footer{
     content: " ";
     display: block;
     clear: both;
-  }
+}
+textarea{
+    font-size: auto;
+}
