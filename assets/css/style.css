@@ -85,3 +85,21 @@ button{
     background: #4aaaa5;
     
 }
+.portfolioImage{
+    margin-left:20%;
+    margin-top:3%;
+}
+.container{
+    margin-left:20%;
+    position: relative;
+}
+  
+.text{
+    width:20%;
+    margin-left: 20%;
+    margin-right:60%;
+    text-align:center;
+    bottom: 55%;
+    background: #4aaaa5;
+    color: #ffffff;
+}
