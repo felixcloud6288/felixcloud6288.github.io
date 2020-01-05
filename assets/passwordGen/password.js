@@ -121,9 +121,10 @@ function makeEmergencyValues(string){
 }
 
 // adding an eventListener to the HTML button, when clicked, everything is run
-document.body.children[1].addEventListener("click", function(){
+document.getElementById("generator").addEventListener("click", function(){
 
 var string = []
 string = makePassword(string)
 console.log(string.join(''))
+document.getElementById("password").textContent = string.join('')
 })
