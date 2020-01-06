@@ -13,17 +13,28 @@ var length,capital,lowercase,numbers,special
 // Prompts the user for parameters
 function getParameters(){
     
-    length = prompt("How many characters will the password have?")
+    var any = false
+    length = prompt("How many characters will the password have?(8 - 128 limit)")
     length = parseInt(length, 10)
     // Security net to ensure user does not set length to a string or negative number
-    while (isNaN(length) || length < 3){
-        length = prompt("How many characters will the password have?")
+    while (isNaN(length) || length < 3 || length > 128){
+        length = prompt("How many characters will the password have?(8 - 128 limit)")
         length = parseInt(length, 10)
     }
-    capital = confirm("Are there capital letters?")
-    lowercase = confirm("Are there lowercase letters?")
-    numbers = confirm("Are there numbers?")
-    special = confirm("Are there special characters?")
+
+    while (!any){
+        capital = confirm("Are there capital letters?")
+        lowercase = confirm("Are there lowercase letters?")
+        numbers = confirm("Are there numbers?")
+        special = confirm("Are there special characters?")
+        if (capital || lowercase || numbers || special)
+        {
+            any = true
+        }
+        else{
+            alert("Password must contain at least one type of character")
+        }
+    }
 }
 function makePassword(string){
     getParameters()
@@ -33,24 +44,29 @@ function makePassword(string){
     // 1 = lowercase
     // 2 = number
     // 3 = special character
-    for(var i=0; i<length;i++)
+    var i = 0
+    while(i<length)
     {
         var x = Math.floor(Math.random() * 4)
-        if (x == 0 && capital == true)
+        if (x == 0 && capital == true){
             string[i] = generateCapital();
-        else if (x == 1 && lowercase == true)
+        }
+        else if (x == 1 && lowercase == true){
             string[i] = generateLowerCase();
-        else if (x == 2 && numbers == true)
+        }
+        else if (x == 2 && numbers == true){
            string[i] = generateNumber();
-        else if (x == 3 && special == true)
+        }
+        else if (x == 3 && special == true){
             string[i] = generateSpecial();
+        }
         else{
-            i--;
             continue;
         }
         // convert ints to ASCII values
         string[i] = String.fromCharCode(string[i]);
         console.log("Current string = "+ string.join(""))
+        i++
     }
     // An additional precaution to ensure at least one of every char type is put in the password
     string = makeEmergencyValues(string)
