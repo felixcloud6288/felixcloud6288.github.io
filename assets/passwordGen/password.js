@@ -126,5 +126,16 @@ document.getElementById("generator").addEventListener("click", function(){
 var string = []
 string = makePassword(string)
 console.log(string.join(''))
+document.getElementById("password").disabled = false;
 document.getElementById("password").textContent = string.join('')
+document.getElementById("password").disabled = true;
+document.getElementById("copy").disabled = false;
+})
+
+document.getElementById("copy").addEventListener("click", function(){
+    var text = document.getElementById("password")
+    document.getElementById("password").disabled = false;
+    text.select()
+    document.execCommand("copy")
+    document.getElementById("password").disabled = true;
 })
