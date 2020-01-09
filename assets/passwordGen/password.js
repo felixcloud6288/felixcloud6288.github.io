@@ -17,7 +17,7 @@ function getParameters(){
     length = prompt("How many characters will the password have?(8 - 128 limit)")
     length = parseInt(length, 10)
     // Security net to ensure user does not set length to a string or negative number
-    while (isNaN(length) || length < 8 || length > 128){
+    while (isNaN(length) || length < 3 || length > 128){
         length = prompt("How many characters will the password have?(8 - 128 limit)")
         length = parseInt(length, 10)
     }
