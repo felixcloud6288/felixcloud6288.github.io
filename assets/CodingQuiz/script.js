@@ -32,13 +32,32 @@ function beginQuiz(event){
     var button3 = document.createElement("button")
     var button4 = document.createElement("button")
     // Add attributes to them. Buttons are given an ID to determine which has the right answer
+    button1.setAttribute("data-align", 0)
+    button2.setAttribute("data-align", 1)
+    button3.setAttribute("data-align", 2)
+    button4.setAttribute("data-align", 3)
     
     // Append to the page
-
+    document.body.appendChild(questionCount)
+    document.body.removeChild(document.getElementById("start"))
     // loop through the quiz
+    var i = 0  
+    questionCount.innerHTML = "Question "+(i+1)+":"
+        question.innerHTML = quiz.questions[i]
+        questionCount.appendChild(question)
+        question.appendChild(button1)
+        question.appendChild(button2)
+        question.appendChild(button3)
+        question.appendChild(button4)
+        button1.textContent = quiz.answers[i][0]
+        button2.textContent = quiz.answers[i][1]
+        button3.textContent = quiz.answers[i][2]
+        button4.textContent = quiz.answers[i][3]
+    
 }
 
-var button = document.createElement("button")
-button.textContent = "Click here to begin"
-button.addEventListener("click", beginQuiz)
-document.body.appendChild(button)
+var startButton = document.createElement("button")
+startButton.textContent = "Click here to begin"
+startButton.setAttribute("id", "start")
+startButton.addEventListener("click", beginQuiz)
+document.body.appendChild(startButton)
