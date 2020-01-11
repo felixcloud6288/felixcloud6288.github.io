@@ -22,11 +22,24 @@ var quiz = {
         [false, false, true, false]
     ]
 }
+function intervalTimer(){
+    var timerInterval = setInterval(function(){
+        console.log("entered timer")
+        secondsRemaining--
+        console.log(secondsRemaining)
+        timer.textContent = "remaining time: " + secondsRemaining
+        if (secondsRemaining === 0){
+            clearInterval(timerInterval)
+            i++
+        }
+    }, 1000)
+}
 function beginQuiz(event){
     console.log("Entered quiz")
     // Create the components of the page
     var questionCount = document.createElement("div")
     var question = document.createElement("div")
+    var timer = document.createElement("h1")
     var button1 = document.createElement("button")
     var button2 = document.createElement("button")
     var button3 = document.createElement("button")
@@ -38,11 +51,17 @@ function beginQuiz(event){
     button4.setAttribute("data-align", 3)
     
     // Append to the page
+    document.body.appendChild(timer)
     document.body.appendChild(questionCount)
     document.body.removeChild(document.getElementById("start"))
     // loop through the quiz
-    var i = 0  
-    questionCount.innerHTML = "Question "+(i+1)+":"
+    var i = 0
+
+    // Doesn't work, rewrite so timer is not in while loop
+    while (i < quiz.questions.length){
+        console.log("i = " + i)
+        var secondsRemaining = 10
+        questionCount.innerHTML = "Question "+(i+1)+":"
         question.innerHTML = quiz.questions[i]
         questionCount.appendChild(question)
         question.appendChild(button1)
@@ -53,7 +72,9 @@ function beginQuiz(event){
         button2.textContent = quiz.answers[i][1]
         button3.textContent = quiz.answers[i][2]
         button4.textContent = quiz.answers[i][3]
-    
+        console.log("i = " + i + " seconds Remaining = " + secondsRemaining)
+        intervalTimer()
+    }
 }
 
 var startButton = document.createElement("button")

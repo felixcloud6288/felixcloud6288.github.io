@@ -19,3 +19,7 @@ Plan:
 *Store quiz section in a timer-while loop
 *buttons will navigate to a separate function that checks if answers are correct or not
 *score will be a global
+
+
+ISSUES:
+timers do not work in while loops; must rewrite so it does not use one
