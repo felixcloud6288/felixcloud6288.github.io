@@ -11,7 +11,6 @@ How to Play:
 
 TODO:
 *Implement the timer
-*Add event listeners to answer buttons
 *Implement score
 *Add CSS
 
@@ -22,4 +21,4 @@ Plan:
 
 
 ISSUES:
-timers do not work in while loops; must rewrite so it does not use one
+Timer counts down independently of button presses; must implement in separate functions
