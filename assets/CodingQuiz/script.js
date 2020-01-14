@@ -22,12 +22,44 @@ var quiz = {
         [false, false, true, false]
     ]
 }
-function setButtonDetails(button, index, id){
-    button.setAttribute("data-index", index)
-    button.setAttribute("id", id)
-}
 
-function buildQuiz(i){
+
+var timerInterval // will be used to track time
+var index // track which question we're on
+var score // track current score
+
+var startTime
+var EndTime
+
+var startButton = document.createElement("button")
+startButton.textContent = "Click here to begin"
+startButton.setAttribute("id", "start")
+startButton.addEventListener("click", beginQuiz)
+document.body.appendChild(startButton)
+
+// Set initial details
+function beginQuiz(event){
+    console.log("Entered quiz")
+    document.body.removeChild(document.getElementById("start"))
+    index = 0
+    
+    // make the score counter
+    var highScore = document.createElement("p")
+    highScore.setAttribute("id", "score")
+    score = 0;
+    highScore.textContent= "Score: "+score
+    document.body.appendChild(highScore)
+    // build the timer element
+    var timer = document.createElement("h1")
+    timer.setAttribute("id", "timer")
+    document.body.appendChild(timer)
+
+    // set up the remaining elements
+    buildQuiz(index)
+    makeInterval(timer)
+}
+// set up question and answer elements
+function buildQuiz(index){
     // Create the components of the page
     var questionCount = document.createElement("div")
     var question = document.createElement("div")
@@ -37,16 +69,15 @@ function buildQuiz(i){
     var button4 = document.createElement("button")
     // Add attributes to them. Buttons are given an ID to determine which has the right answer
     questionCount.setAttribute("id", "question")
-    setButtonDetails(button1, i, "0")
-    setButtonDetails(button2, i, "1")
-    setButtonDetails(button3, i, "2")
-    setButtonDetails(button4, i, "3")
+    setButtonDetails(button1, index, "0")
+    setButtonDetails(button2, index, "1")
+    setButtonDetails(button3, index, "2")
+    setButtonDetails(button4, index, "3")
     
     // Append to the page
     document.body.appendChild(questionCount)
-
-    questionCount.innerHTML = "Question "+(i+1)+":"
-    question.innerHTML = quiz.questions[i]
+    questionCount.innerHTML = "Question "+(index+1)+":"
+    question.innerHTML = quiz.questions[index]
     questionCount.appendChild(question)
     question.appendChild(button1)
     question.appendChild(button2)
@@ -54,11 +85,12 @@ function buildQuiz(i){
     question.appendChild(button4)
 
     // Set button text
-    button1.textContent = quiz.answers[i][0]
-    button2.textContent = quiz.answers[i][1]
-    button3.textContent = quiz.answers[i][2]
-    button4.textContent = quiz.answers[i][3]
+    button1.textContent = quiz.answers[index][0]
+    button2.textContent = quiz.answers[index][1]
+    button3.textContent = quiz.answers[index][2]
+    button4.textContent = quiz.answers[index][3]
 
+    // set event listeners to the buttons
     button1.addEventListener("click", function(event){
         answerClick(event)
     })
@@ -72,65 +104,85 @@ function buildQuiz(i){
         answerClick(event)
     })
 }
-
+// Determine if the clicked button was the correct answer
 function answerClick(event){
-    var index = event.target.getAttribute("data-index")
     var answer = event.target.getAttribute("id")
     console.log(answer)
 
     if (quiz.correct[index][answer])
     {
         console.log("correct")
+        endTime = new Date().getTime()
+        score += Math.ceil(1000 - (endTime - startTime)/10)
+        var highScore = document.getElementById("score")
+        highScore.textContent = "Score: " + score
     }
     else{
         console.log("incorrect")
     }
     if (index >= 4){
         clearInterval(timerInterval)
-        return;
+        resetAll()
     }
     else{
         document.body.removeChild(document.getElementById("question"))
         buildQuiz(++index)
+        makeInterval(document.getElementById("timer"))
     }
 }
-
-function beginQuiz(event){
-    console.log("Entered quiz")
-    var i = 0;
-    var secondsRemaining = 9
-
-    var timer = document.createElement("h1")
+// Run and reset the timer; timer starts at 9 and counts down to 0
+// afterward, quiz jumps to the next question
+function makeInterval(timer)
+{
+    clearInterval(timerInterval)
+    startTime = new Date().getTime()
+    console.log(startTime)
+    var secondsRemaining = 9;
     timer.textContent = "remaining time: " + secondsRemaining
-    document.body.removeChild(document.getElementById("start"))
-    document.body.appendChild(timer)
 
-    buildQuiz(i)
+    console.log("Reset the timer")
+    timerInterval = setInterval(function(){
 
-    var timerInterval = setInterval(function(){
         console.log("entered timer")
         console.log(secondsRemaining)
         if (secondsRemaining == 0){
-            i = document.getElementById("0").getAttribute("data-index")
-            console.log("i = "+i)
-            if (i >= 4){
+            console.log("i = "+index)
+            if (index >= 4){
                 clearInterval(timerInterval)
-                return;
+                resetAll()
             }
             else{
+                startTime = new Date().getTime()
                 document.body.removeChild(document.getElementById("question"))
                 secondsRemaining = 10
-                buildQuiz(++i)
+                buildQuiz(++index)
             }
         }
         secondsRemaining--
         timer.textContent = "remaining time: " + secondsRemaining
     }, 1000)
 }
+// set button details
+function setButtonDetails(button, index, id){
+    button.setAttribute("data-index", index)
+    button.setAttribute("id", id)
+}
+function resetAll(){
+    document.body.removeChild(document.getElementById("timer"))
+    document.body.removeChild(document.getElementById("question"))
+    document.body.removeChild(document.getElementById("score"))
 
-
-var startButton = document.createElement("button")
-startButton.textContent = "Click here to begin"
-startButton.setAttribute("id", "start")
-startButton.addEventListener("click", beginQuiz)
-document.body.appendChild(startButton)
+    var highScore = document.createElement("h1")
+    highScore.textContent = "Your score " + score
+    document.body.appendChild(highScore)
+    // Play another round
+    startButton.textContent = "Play again"
+    startButton.removeEventListener("click", beginQuiz)
+    startButton.addEventListener("click", function(){
+        console.log("New Quiz selected")
+        document.body.removeChild(highScore)
+        debugger
+        beginQuiz(event)
+    })
+    document.body.appendChild(startButton)
+}

@@ -10,15 +10,12 @@ How to Play:
 
 
 TODO:
-*Implement the timer
-*Implement score
+*Save high score
 *Add CSS
 
 Plan:
-*Store quiz section in a timer-while loop
-*buttons will navigate to a separate function that checks if answers are correct or not
-*score will be a global
-
+*Store scores in an array into local storage
+*Create second HTML that pulls from storage
 
 ISSUES:
-Timer counts down independently of button presses; must implement in separate functions
+
