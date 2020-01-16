@@ -10,7 +10,6 @@ How to Play:
 
 
 TODO:
-*Save high score
 *Add CSS
 
 Plan:

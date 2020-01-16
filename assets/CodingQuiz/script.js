@@ -27,9 +27,10 @@ var quiz = {
 var timerInterval // will be used to track time
 var index // track which question we're on
 var score // track current score
+var highScoreCounter = []
 
-var startTime
-var EndTime
+var startTime // track the time you started a question
+var EndTime // track the time you ended a question
 
 var startButton = document.createElement("button")
 startButton.textContent = "Click here to begin"
@@ -42,6 +43,12 @@ function beginQuiz(event){
     console.log("Entered quiz")
     document.body.removeChild(document.getElementById("start"))
     index = 0
+
+    highScoreCounter = JSON.parse(localStorage.getItem("scores"))
+    if (highScoreCounter === null){
+        highScoreCounter = [0,0,0,0,0]
+    }
+    console.log(highScoreCounter)
     
     // make the score counter
     var highScore = document.createElement("p")
@@ -175,14 +182,33 @@ function resetAll(){
     var highScore = document.createElement("h1")
     highScore.textContent = "Your score " + score
     document.body.appendChild(highScore)
+
+    addToHighScore()
     // Play another round
     startButton.textContent = "Play again"
     startButton.removeEventListener("click", beginQuiz)
     startButton.addEventListener("click", function(){
         console.log("New Quiz selected")
         document.body.removeChild(highScore)
-        debugger
         beginQuiz(event)
     })
     document.body.appendChild(startButton)
+    document.body.appendChild(document.createElement("br"))
+    var scoreLink = document.createElement("a")
+    scoreLink.textContent = "View High Scores"
+    scoreLink.setAttribute("href", "highScores.html")
+    document.body.appendChild(scoreLink)
+}
+
+function addToHighScore(){
+    for(var i=0;i<5;i++){
+        if (highScoreCounter[i] < score)
+        {
+            highScoreCounter.splice(i,0,score)
+            highScoreCounter.pop()
+            break
+        }
+    }
+    console.log(highScoreCounter)
+    localStorage.setItem("scores", JSON.stringify(highScoreCounter))
 }

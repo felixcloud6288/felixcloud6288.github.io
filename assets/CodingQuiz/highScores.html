@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang = "en">
+    <head>
+        <title>Coding Quiz</title>
+    </head>
+    <body>
+        <h1>High Scores</h1>
+        <h2>1st: <i id = "0">x</i></h2>
+        <h3>2nd: <i id = "1">x</i></h3>
+        <h4>3rd: <i id = "2">x</i></h4>
+        <h4>4th: <i id = "3">x</i></h4>
+        <h4>5th: <i id = "4">x</i></h4>
+        <a href = "index.html">Return to quiz</a>
+
+        <script type="text/javascript">
+            var HighScoreCounter = JSON.parse(localStorage.getItem("scores"))
+
+            if(HighScoreCounter ===null)
+            {
+                HighScoreCounter = [0,0,0,0,0]
+            }
+            for(var i = 0; i < 5; i++){
+                document.getElementById(i).textContent = HighScoreCounter[i]
+        }
+        </script>
+    </body>
+</html>
