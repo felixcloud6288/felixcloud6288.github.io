@@ -90,7 +90,8 @@ $.ajax({
 
 function restoreHistory(){
     var list = JSON.parse(localStorage.getItem("pastSearch"))
-    if (list === null)
+    console.log(list)
+    if (list == null)
         return
     $(list).each(function(index, place){
         var cityBtn = $("<button>")
