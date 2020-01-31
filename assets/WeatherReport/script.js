@@ -1,49 +1,64 @@
 var APIKey = "bbda06d34b1585cdae406d73ae167e39"
 var locations = []
-
+// make call for city weather
 function getCityInfo(place){
-$.ajax({
-    url: "https://api.openweathermap.org/data/2.5/weather?q="+place+"&units=Imperial&APPID="+APIKey,
-    method: "GET"
-}).then(function(result){
-    $(".report").text(place+ " "+ moment().format('MMMM Do YYYY'))
-    var image = $("<img>")
-    $(image).attr("src", "http://openweathermap.org/img/wn/"+result.weather[0].icon+".png")
-    $(".report").append(image)
-    var temp = $("<p>")
-    var humidity = $("<p>")
-    var wind = $("<p>")
-    var uvIndex = $("<p>")
+    $.ajax({
+        url: "https://api.openweathermap.org/data/2.5/weather?q="+place+"&units=Imperial&APPID="+APIKey,
+        method: "GET"
+    }).then(function(result){
+        console.log(result)
+        // print date and info
+        $(".report").text(place+ " "+ moment().format('MMMM Do YYYY'))
+        var image = $("<img>")
+        $(image).attr("src", "http://openweathermap.org/img/wn/"+result.weather[0].icon+".png")
+        $(".report").append(image)
+        // make info sections
+        var temp = $("<p>")
+        var humidity = $("<p>")
+        var wind = $("<p>")
+        var uvIndex = $("<p>")
 
-    //TODO: Get UV
-    $(temp).text("Temperature: "+result.main.temp)
-    $(humidity).text("Humidity: "+result.main.humidity)
-    $(wind).text("Wind Speed: "+result.wind.speed)
-    $(".report").append(temp)
-    $(".report").append(humidity)
-    $(".report").append(wind)
+        $(temp).text("Temperature: "+result.main.temp+"\xB0F")
+        $(humidity).text("Humidity: "+result.main.humidity+"%")
+        $(wind).text("Wind Speed: "+result.wind.speed+" mph")
+        $(".report").append(temp)
+        $(".report").append(humidity)
+        $(".report").append(wind)
+        $(".report").append(uvIndex)
 
-    var previousSearch = $("#"+place)
-        if(previousSearch.length === 0){
-            var cityBtn = $("<button>")
-            $(cityBtn).text(place)
-            $(cityBtn).attr("class","btn btn-outline-secondary btn-block prevCities") 
-            $(cityBtn).attr("id", place)
-            $(cityBtn).on("click", function(){
-                console.log("Hello")
-                        getCityInfo($(this).text())
-                
-                })
-            var row = $("<div>")
-            row.attr("class", "row")
-            $(row).append(cityBtn)
-            $("#searchContainer").append(row)
+        $.ajax({
+            url: "http://api.openweathermap.org/data/2.5/uvi?lat="+result.coord.lat+"&lon="+result.coord.lon+"&appid="+APIKey,
+            method:"GET"
+        }).then(function(response){
+            console.log(response)
+            $(uvIndex).text("UV Index: "+response.value)
+        }).fail(function(){
+            $(uvIndex).text("UV Index unavailable")
+        })
 
-            $("button").attr("last", "true").removeAttr("last")
-            $(cityBtn).attr("last", "true")
-
+        // create a button for search history
+        var previousSearch = $("#"+place)
+        // Delete old instance of a search
+        $(previousSearch).remove()
+        var cityBtn = $("<button>")
+        $(cityBtn).text(place)
+        $(cityBtn).attr("class","btn btn-outline-secondary btn-block prevCities") 
+        $(cityBtn).attr("id", place)
+        $(cityBtn).on("click", function(){
+            getCityInfo($(this).text())
+        })
+        
+        var row = $("<div>")
+        row.attr("class", "row")
+        row.attr("id", place)
+        $(row).append(cityBtn)
+        $("#searchContainer").prepend(row)        
+        // edit search array
+        var index = locations.indexOf(place)
+        if (index !== -1){
+            locations.splice(index, 1)
         }
-    locations.push(place)
+        locations.push(place)
 
     localStorage.setItem("pastSearch", JSON.stringify(locations))
 })
@@ -78,22 +93,24 @@ function restoreHistory(){
 
     $(list).each(function(index, place){
         var cityBtn = $("<button>")
-            $(cityBtn).text(place)
-            $(cityBtn).attr("class","btn btn-outline-secondary btn-block prevCities") 
-            $(cityBtn).attr("id", place)
-            $(cityBtn).on("click", function(){
-                console.log("Hello")
-                        getCityInfo($(this).text())
-                
-                })
-            var row = $("<div>")
-            row.attr("class", "row")
-            $(row).append(cityBtn)
-            $("#searchContainer").append(row)
+        $(cityBtn).text(place)
+        $(cityBtn).attr("class","btn btn-outline-secondary btn-block prevCities") 
+        $(cityBtn).attr("id", place)
+        $(cityBtn).on("click", function(){
+                getCityInfo($(this).text())
+            
         })
-    getCityInfo($("button").attr("last","true"))
+        var row = $("<div>")
+        row.attr("class", "row")
+        row.attr("id", place)
+        $(row).append(cityBtn)
+        $("#searchContainer").prepend(row)
+        locations.push(place)
+    })
+    getCityInfo(list[list.length-1])
 }
 restoreHistory()
+
 $(".btn-success").on("click", function(){
     var place = $("#search").val()
     if(place.trim()){
