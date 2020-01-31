@@ -27,7 +27,7 @@ function getCityInfo(place){
         $(".report").append(uvIndex)
 
         $.ajax({
-            url: "http://api.openweathermap.org/data/2.5/uvi?lat="+result.coord.lat+"&lon="+result.coord.lon+"&appid="+APIKey,
+            url: "https://api.openweathermap.org/data/2.5/uvi?lat="+result.coord.lat+"&lon="+result.coord.lon+"&appid="+APIKey,
             method:"GET"
         }).then(function(response){
             console.log(response)
