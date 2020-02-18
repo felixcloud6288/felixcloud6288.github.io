@@ -1,8 +1,12 @@
-
+const fs = require ("fs");
 const axios = require("axios").default;
 const inquirer = require("inquirer");
 const generateHTML = require("./generateHTML.js");
 
+
+function writeToFile(details){
+    fs.writeFile("index.html", details)
+}
 
 function init(){
     inquirer.prompt([
@@ -17,7 +21,7 @@ function init(){
           name: "color"
         }
       ]).then(function(response){
-        console.log(generateHTML.generateHTML(response));
+        writeToFile(generateHTML.generateHTML(response));
         console.log(generateHTML.test());
         axios.get("https://api.github.com/users/"+response.username)
         .then(function(response){
