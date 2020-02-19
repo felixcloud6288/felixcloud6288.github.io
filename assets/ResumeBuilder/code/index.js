@@ -5,7 +5,10 @@ const generateHTML = require("./generateHTML.js");
 
 
 function writeToFile(details){
-    fs.writeFile("index.html", details)
+    fs.writeFile("index.html", details);
+}
+function writeBody(details){
+  fs.appendFile("index.html", details);
 }
 
 function init(){
@@ -22,11 +25,11 @@ function init(){
         }
       ]).then(function(response){
         writeToFile(generateHTML.generateHTML(response));
-        console.log(generateHTML.test());
         axios.get("https://api.github.com/users/"+response.username)
         .then(function(response){
-            console.log(response);
-        }).catch(function(err){
+            writeBody(generateHTML.generateBody(response.data))
+        
+          }).catch(function(err){
             console.log("Username not found")
         })
       })

@@ -171,14 +171,67 @@ return `<!DOCTYPE html>
         } 
         }
     </style>
-</head>
-<\html>`
+</head>`
 }
-function test(){
-    return "!";
+
+
+function generateBody(data){
+  console.log(data)
+  return    `<body>
+  <div>
+      <header class = "wrapper">
+          <div class = "photo-header">
+              <img src = "${data.avatar_url}">
+                  <h1>
+                      My name is ${data.name}
+                  </h1>
+                  <h2>
+                      Currently at ${data.company}
+                  </h2>
+                  <div class = "nav-link">
+                    <a>${data.location}</a>  
+                    <a href = "${data.html_url}">github</a>
+                  </div>
+              </div>
+      </header>
+  </div>
+  <div class = "container">
+      <div class = "row">
+          <div class = "col">
+              <h3>${data.bio}</h3>
+          </div>
+      </div>
+  </div>
+  <div class = "container">
+      <div class = "row">
+          <div class = "col card">
+              <h3><a>Public Repositories</a></h3>
+              <h4><a>${data.public_repos}</a></h4>
+          </div>
+          <div class = "col card">
+              <h3><a>Followers</a></h3>
+              <h4><a>${data.followers}</a></h4>
+          </div>
+      </div>
+      <div class = "row">
+          <div class = "col card">
+              <h3><a>Github Stars</a></h3>
+              <h4><a>${data.public_gists}</a></h4>
+          </div>
+          <div class = "col card">
+              <h3><a>Following</a></h3>
+              <h4><a>${data.following}</a></h4>
+          </div>
+      </div>
+  </div>
+  <div>
+      <footer class = "wrapper"></footer>
+  </div>
+</body>
+</html>`
 }
 
 module.exports = {
     generateHTML: generateHTML,
-    test: test
+    generateBody: generateBody
 }
