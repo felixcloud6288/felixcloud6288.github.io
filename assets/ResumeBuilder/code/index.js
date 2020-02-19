@@ -19,9 +19,10 @@ function init(){
           name: "username"
         },
         {
-          type: "input",
+          type: "list",
           message: "What is your favorite color?",
-          name: "color"
+          name: "color",
+          choices:["blue", "pink", "green", "red"]
         }
       ]).then(function(response){
         writeToFile(generateHTML.generateHTML(response));

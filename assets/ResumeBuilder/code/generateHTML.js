@@ -176,7 +176,6 @@ return `<!DOCTYPE html>
 
 
 function generateBody(data){
-  console.log(data)
   return    `<body>
   <div>
       <header class = "wrapper">
