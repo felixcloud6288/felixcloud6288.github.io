@@ -3,12 +3,17 @@ const axios = require("axios").default;
 const inquirer = require("inquirer");
 const generateHTML = require("./generateHTML.js");
 
+// Check this
+const pdf = require("html-pdf");
 
-function writeToFile(details){
-    fs.writeFile("index.html", details);
-}
-function writeBody(details){
-  fs.appendFile("index.html", details);
+
+
+function createPDF(head, body){
+  const options = {"format":"Letter"};
+  pdf.create(head+body, options).toFile("resume.pdf", function(err, res){
+    if (err) return console.log(err)
+    console.log(res);
+  })
 }
 
 function init(){
@@ -24,15 +29,17 @@ function init(){
           name: "color",
           choices:["blue", "pink", "green", "red"]
         }
-      ]).then(function(response){
-        writeToFile(generateHTML.generateHTML(response));
-        axios.get("https://api.github.com/users/"+response.username)
-        .then(function(response){
-            writeBody(generateHTML.generateBody(response.data))
+      ]).then(async function(response){
+        const head = generateHTML.generateHTML(response);
         
-          }).catch(function(err){
-            console.log("Username not found")
+        const {data} = await axios.get("https://api.github.com/users/"+response.username)
+        console.log(data)
+        const body = await generateHTML.generateBody(data);
+        createPDF(head, body);
         })
+        .catch(function(err){
+          console.log(err);
+          console.log("Username not found")
       })
 
 }
