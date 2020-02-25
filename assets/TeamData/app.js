@@ -167,7 +167,6 @@ async function createHTML(){
     
     for (let i = 0; i < team.length; i++){
 
-        console.log(i)
         if (i % 3 === 0){
             HTML = HTML.concat(
                 `<div class = "row justify-content-center">`
@@ -178,28 +177,27 @@ async function createHTML(){
                         <div class = "card">    
                             <header class = "card-title">
                                 <h3 class = "card-title">
-                                    Philip
+                                    ${team[i].name}
                                 </h3>
-                                <h6 class = "card-subtitle">Manager</h6>
+                                <h6 class = "card-subtitle">${team[i].getRole()}</h6>
                             </header>
                             
                             <div class = "card-body">
                                 <div class = "container">
                                     <div class = "row">
-                                        <a>ID: 2</a>
+                                        <a>ID: ${team[i].id}</a>
                                     </div>
                                     <div class = "row">
-                                        <a>Email: Philip@test.com</a>
+                                        <a>Email: ${team[i].email}</a>
                                     </div>
                                     <div class = "row">
-                                        <a>Office: 104</a>
+                                        <a>${getUniqueToken(team[i])}</a>
                                     </div>
                                 </div>
                             </div>
                         </div>`
         )
     if (i % 3 == 2){
-        console.log("Created div")
         HTML = HTML.concat(
                     `</div>`);
     }
@@ -211,6 +209,17 @@ async function createHTML(){
     )
     }
     return HTML;
+}
+
+function getUniqueToken(employee){
+    switch(employee.getRole()){
+        case "Manager":
+            return "Office Number: " + employee.officeNumber;
+        case "Engineer":
+            return "Github: "+ employee.github;
+        default:
+            return "School: "+ employee.school;
+    }
 }
 
 menu();
