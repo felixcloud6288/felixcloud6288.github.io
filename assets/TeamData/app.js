@@ -122,7 +122,8 @@ async function createProfile(){
     })
 }
 async function createHTML(){
-    let HTML = `<!DOCTYPE html>
+    let HTML = 
+    `<!DOCTYPE html>
     <html>
         <head>
             <title>
@@ -173,34 +174,34 @@ async function createHTML(){
             )
         }
         HTML = HTML.concat(
-`                <div class = "col-sm-4">
-<div class = "card">    
-    <header class = "card-title">
-        <h3 class = "card-title">
-            Philip
-        </h3>
-        <h6 class = "card-subtitle">Manager</h6>
-    </header>
-    
-    <div class = "card-body">
-        <div class = "container">
-            <div class = "row">
-                <a>ID: 2</a>
-            </div>
-            <div class = "row">
-                <a>Email: Philip@test.com</a>
-            </div>
-            <div class = "row">
-                <a>Office: 104</a>
-            </div>
-        </div>
-    </div>
-</div>
-</div>`
+                    `<div class = "col-sm-4">
+                        <div class = "card">    
+                            <header class = "card-title">
+                                <h3 class = "card-title">
+                                    Philip
+                                </h3>
+                                <h6 class = "card-subtitle">Manager</h6>
+                            </header>
+                            
+                            <div class = "card-body">
+                                <div class = "container">
+                                    <div class = "row">
+                                        <a>ID: 2</a>
+                                    </div>
+                                    <div class = "row">
+                                        <a>Email: Philip@test.com</a>
+                                    </div>
+                                    <div class = "row">
+                                        <a>Office: 104</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>`
         )
     if (i % 3 == 2){
         console.log("Created div")
-        HTML = HTML.concat(`</div>`);
+        HTML = HTML.concat(
+                    `</div>`);
     }
 
     HTML = HTML.concat(
