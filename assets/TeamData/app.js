@@ -14,16 +14,16 @@ function menu(){
     }).then(async function(response){
 
         if(response.action === "Add Engineer"){
-            addEngineer();
+            await addEngineer();
         }
         else if(response.action === "Add Intern"){
-            addIntern();
+            await addIntern();
         }
         else if(response.action === "Add Manager"){
             await addManager();
         }
         else if(response.action === "Create Profile"){
-            createProfile();
+            await createProfile();
         }
 
         else{
@@ -34,43 +34,88 @@ function menu(){
 
 }
 async function addManager(){
-    console.log("Manager");
     await inquirer.prompt([
         {
             name: "name",
             type: "input",
-            message: "Manager name"
+            message: "Manager name:"
         },
         {
             name: "ID",
             type: "input",
-            message: "Manager ID"
+            message: "Manager ID:"
         },
         {
             name: "email",
             type: "input",
-            message: "Manager Email"
+            message: "Manager Email:"
         },
         {
             name: "officeNumber",
             type: "input",
-            message: "Manager Office Number"
+            message: "Manager Office Number:"
         }
     ]).then((response)=>{
         const manager = new Manager(response.name, response.ID, response.email, response.officeNumber);
-        console.log(manager);
+        team.push(manager);
     })
 }
-function addEngineer(){
-    console.log("Engineer")
+async function addEngineer(){
+    await inquirer.prompt([
+        {
+            name: "name",
+            type: "input",
+            message: "Engineer name:"
+        },
+        {
+            name: "ID",
+            type: "input",
+            message: "Engineer ID:"
+        },
+        {
+            name: "email",
+            type: "input",
+            message: "Engineer Email:"
+        },
+        {
+            name: "github",
+            type: "input",
+            message: "Engineer Github account:"
+        }
+    ]).then((response)=>{
+        const engineer = new Engineer(response.name, response.ID, response.email, response.github);
+        team.push(engineer);
+    })
 }
-function addIntern(){
-    console.log("Intern")
-
+async function addIntern(){
+    await inquirer.prompt([
+        {
+            name: "name",
+            type: "input",
+            message: "Intern name:"
+        },
+        {
+            name: "ID",
+            type: "input",
+            message: "Intern ID:"
+        },
+        {
+            name: "email",
+            type: "input",
+            message: "Intern Email:"
+        },
+        {
+            name: "school",
+            type: "input",
+            message: "Intern School:"
+        }
+    ]).then((response)=>{
+        const intern = new Intern(response.name, response.ID, response.email, response.school);
+        team.push(intern);
+    })
 }
-function createProfile(){
-    console.log("Profile")
-
+async function createProfile(){
+    console.log(team);
 }
 
 menu();
