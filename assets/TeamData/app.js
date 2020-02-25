@@ -34,27 +34,38 @@ function menu(){
     })
 
 }
+const check = async function(input){
+    if(input === ''){
+        return "Field cannot be blank";
+    }
+    return true;
+}
+
 async function addManager(){
     await inquirer.prompt([
         {
             name: "name",
             type: "input",
-            message: "Manager name:"
+            message: "Manager name:",
+            validate: check
         },
         {
             name: "ID",
             type: "input",
-            message: "Manager ID:"
+            message: "Manager ID:",
+            validate: check
         },
         {
             name: "email",
             type: "input",
-            message: "Manager Email:"
+            message: "Manager Email:",
+            validate: check
         },
         {
             name: "officeNumber",
             type: "input",
-            message: "Manager Office Number:"
+            message: "Manager Office Number:",
+            validate: check
         }
     ]).then((response)=>{
         const manager = new Manager(response.name, response.ID, response.email, response.officeNumber);
@@ -66,22 +77,26 @@ async function addEngineer(){
         {
             name: "name",
             type: "input",
-            message: "Engineer name:"
+            message: "Engineer name:",
+            validate: check
         },
         {
             name: "ID",
             type: "input",
-            message: "Engineer ID:"
+            message: "Engineer ID:",
+            validate: check
         },
         {
             name: "email",
             type: "input",
-            message: "Engineer Email:"
+            message: "Engineer Email:",
+            validate: check
         },
         {
             name: "github",
             type: "input",
-            message: "Engineer Github account:"
+            message: "Engineer Github account:",
+            validate: check
         }
     ]).then((response)=>{
         const engineer = new Engineer(response.name, response.ID, response.email, response.github);
@@ -93,22 +108,26 @@ async function addIntern(){
         {
             name: "name",
             type: "input",
-            message: "Intern name:"
+            message: "Intern name:",
+            validate: check
         },
         {
             name: "ID",
             type: "input",
-            message: "Intern ID:"
+            message: "Intern ID:",
+            validate: check
         },
         {
             name: "email",
             type: "input",
-            message: "Intern Email:"
+            message: "Intern Email:",
+            validate: check
         },
         {
             name: "school",
             type: "input",
-            message: "Intern School:"
+            message: "Intern School:",
+            validate: check
         }
     ]).then((response)=>{
         const intern = new Intern(response.name, response.ID, response.email, response.school);
@@ -151,6 +170,7 @@ async function createHTML(){
                 .card-title{
                     background-color:blue;
                     text-align:center;
+                    color: white;
                 }
                 .row{
                     margin: 20px;
