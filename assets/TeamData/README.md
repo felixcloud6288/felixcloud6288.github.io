@@ -5,7 +5,8 @@ Design a portfolio page for your programming team
 ## How to Use
 
 Open terminal and change directory to where app.js is located.
-Run node app.js to begin.
+Run 'npm install'
+Run 'node app.js' to begin.
 
 A menu will appear with options:
 * Add Manager
