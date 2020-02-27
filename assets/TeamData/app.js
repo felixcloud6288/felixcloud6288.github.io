@@ -1,11 +1,14 @@
 const inquirer = require("inquirer");
 const fs = require("fs");
+const util = require("util")
 const Manager = require("./lib/Manager");
 const Intern = require("./lib/Intern");
 const Engineer = require("./lib/Engineer");
 
+// Store team data
 const team = [];
 
+// run the menu options
 function menu(){
     inquirer.prompt({
         name: "action",
@@ -34,13 +37,14 @@ function menu(){
     })
 
 }
+// Ensure user did not leave a filed blank
 const check = async function(input){
     if(input === ''){
         return "Field cannot be blank";
     }
     return true;
 }
-
+// Add Manager data
 async function addManager(){
     await inquirer.prompt([
         {
@@ -72,6 +76,8 @@ async function addManager(){
         team.push(manager);
     })
 }
+
+// Add Engineer data
 async function addEngineer(){
     await inquirer.prompt([
         {
@@ -103,6 +109,8 @@ async function addEngineer(){
         team.push(engineer);
     })
 }
+
+// Add intern data
 async function addIntern(){
     await inquirer.prompt([
         {
@@ -134,13 +142,17 @@ async function addIntern(){
         team.push(intern);
     })
 }
+
+// Create the portfolio file
 async function createProfile(){
-    fs.writeFile("./output/team.html", await createHTML(), async function(err){
-        if (err) console.log("Error finding file");
-        console.log("Success");
-    })
+    const writeFileAsync = util.promisify(fs.writeFile);
+    const HTML = await createHTML();
+    await writeFileAsync("./output/team.html", HTML);
 }
+
+// write the HTML for team.html
 async function createHTML(){
+    // head section
     let HTML = 
     `<!DOCTYPE html>
     <html>
@@ -184,7 +196,7 @@ async function createHTML(){
             </header>
             <div class = "padded-container">
             `
-    
+    // create the div sections for each team member
     for (let i = 0; i < team.length; i++){
 
         if (i % 3 === 0){
@@ -231,6 +243,8 @@ async function createHTML(){
     return HTML;
 }
 
+// Gets the information unique to each type of employee
+// All common data is gathered during the HTML creation process.
 function getUniqueToken(employee){
     switch(employee.getRole()){
         case "Manager":
