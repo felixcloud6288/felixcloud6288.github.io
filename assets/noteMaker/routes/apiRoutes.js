@@ -1,9 +1,14 @@
 const noteData = require ("../db/db");
 
-console.log(noteData);
 
 module.exports = function(app) {
     app.get("/api/notes", function(req, res) {
-        res.json(tableData);
+        res.json(noteData);
     });
+
+    app.post("/api/notes", function(req, res) {
+          noteData.push(req.body);
+          res.json(true);
+
+      });
 }
