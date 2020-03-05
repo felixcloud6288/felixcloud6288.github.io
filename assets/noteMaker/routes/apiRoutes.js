@@ -10,7 +10,6 @@ module.exports = function(app) {
           res.json(true);
       });
     app.delete("/api/notes/:id", function(req, res){
-        console.log(req.params)
         const id = req.params.id;
 
         noteData.forEach(function(note, index){
