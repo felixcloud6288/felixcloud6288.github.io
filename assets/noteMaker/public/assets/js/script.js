@@ -4,6 +4,9 @@ var $saveNoteBtn = $(".save-note");
 var $newNoteBtn = $(".new-note");
 var $noteList = $(".list-container .list-group");
 
+let nextID = 0;
+
+
 // activeNote is used to keep track of the note in the textarea
 var activeNote = {};
 
@@ -52,6 +55,7 @@ var renderActiveNote = function() {
 // Get the note data from the inputs, save it to the db and update the view
 var handleNoteSave = function() {
   var newNote = {
+    id: nextID++,
     title: $noteTitle.val(),
     text: $noteText.val()
   };
@@ -70,7 +74,6 @@ var handleNoteDelete = function(event) {
   var note = $(this)
     .parent(".list-group-item")
     .data();
-
   if (activeNote.id === note.id) {
     activeNote = {};
   }
@@ -111,8 +114,7 @@ var renderNoteList = function(notes) {
 
   for (var i = 0; i < notes.length; i++) {
     var note = notes[i];
-
-    var $li = $("<li class='list-group-item'>").data(note);
+    var $li = $("<li class='list-group-item' id = " + note.id+">").data(note);
     var $span = $("<span>").text(note.title);
     var $delBtn = $(
       "<i class='fas fa-trash-alt float-right text-danger delete-note'>"
@@ -120,6 +122,9 @@ var renderNoteList = function(notes) {
 
     $li.append($span, $delBtn);
     noteListItems.push($li);
+    if (notes[i].id > nextID){
+      nextID = notes[i].id++;
+    }
   }
 
   $noteList.append(noteListItems);
@@ -129,9 +134,9 @@ var renderNoteList = function(notes) {
 var getAndRenderNotes = function() {
   return getNotes().then(function(data) {
     renderNoteList(data);
+
   });
 };
-console.log("here");
 $saveNoteBtn.on("click", handleNoteSave);
 $noteList.on("click", ".list-group-item", handleNoteView);
 $newNoteBtn.on("click", handleNewNoteView);
