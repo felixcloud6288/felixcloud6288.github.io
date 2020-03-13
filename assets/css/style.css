@@ -18,6 +18,7 @@ textarea{
 #image{
     padding: 15px;
     float:left;
+    width: 40%;
 }
 /*Special ID for the message text area in COntacts. Increases height*/
 #message{
