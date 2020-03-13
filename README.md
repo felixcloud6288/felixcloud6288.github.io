@@ -1,22 +1,28 @@
-# portfolio
-A work-in-progress portfolio introducing myself to my coding class and potential employers
+## Portfolio
 
-At the moment, it contains an About, Contacts, and portfolio page.
+Hello. My name is Matthew Weston and this is my personal portfolio. I've been learning 
+coding and programming for about two years now and here's a demo of some of what I've 
+been able to make.
 
-Contacts is purely visual at the moment. In the future it will be given proper functionality.
-Portfolio will be filled as I have actual material to include.
+If you'd like to demo some of my work, you can go to the portfolio page and sample some 
+of the links. You can also check my repositories on https://github.com/mweston6288.
 
-Portfolio is a work-in-progress. As I complete projects and assignments, I will link them into the site through the portfolio page
+##Current portfolio projects:
 
-Current portfolio projects:
+# Random password Generator:
+* Create a password consisting of capital and lowercase letters, numbers, and special 
+characters.
 
-*Random password Generator:
-Create a password consisting of capital and lowercase letters, numbers, and special characters. 
-When you click on "Generate Password", you will be prompted for the length (min 8 characters, max 128 
-characters) and what type of characters you want. 
-A password string will then be printed in the text box. 
-You can then click on "Copy to Clipboard" to copy the password. 
-You can also click "Generate Password" to create another password
+# Coding Quiz
+* A short quiz on coding. Aim to get the high score by quickly and correctly answering 
+the questions.
 
-Known issues:
-*You cannot exit the program once it is started. If you click "Generate Password" you cannot exit.
+# Day Scheduler
+* A notebook to plan out the day. It tracks the time of day so you can't schedule 
+something in the past
+
+And there is more to come.
+
+If you'd like to contact me, I can be reached via email at:
+* mweston6288@gmail.com (preferred)
+* mweston6288@knights.ucf.edu
