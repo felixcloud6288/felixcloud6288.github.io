@@ -19,3 +19,6 @@
 [submodule "noteMaker"]
 	path = noteMaker
 	url = https://github.com/mweston6288/noteMaker
+[submodule "burger"]
+	path = burger
+	url = https://github.com/mweston6288/burger
