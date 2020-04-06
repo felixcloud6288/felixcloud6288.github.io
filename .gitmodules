@@ -22,3 +22,9 @@
 [submodule "burger"]
 	path = burger
 	url = https://github.com/mweston6288/burger
+[submodule "Project1"]
+	path = Project1
+	url = https://github.com/mweston6288/Project1.git
+[submodule "Project2"]
+	path = Project2
+	url = https://github.com/mweston6288/Project2.git
