@@ -22,7 +22,7 @@ const projects = [
     },
     {
         name: "Password generator",
-        url:"passwordGen/password.html"
+        url:"submodules/passwordGen/password.html"
     },
     {
         name: "Day planner",
