@@ -8,7 +8,7 @@ const portfolio = ()=>{
     console.log(projects)
     return(
         <div>
-            <Header page="portfolio" />
+            <Header page="projects" />
             <p>A random assortment of my repo</p>
 
             {projects.map(project=>(
