@@ -1,4 +1,3 @@
-import React, { createContext, useReducer, useContext } from "react";
 
 const projects = [
     {
@@ -46,3 +45,24 @@ const projects = [
         url: "FoodExplorer/index.html"
     },
 ]
+
+function makeProjectArray(indexArray){
+    let projectArray=[];
+    indexArray.forEach(index=>{
+        projectArray.push(projects[index]);
+    })
+    return projectArray;
+}
+function getProjects(){
+    let indexArray = [];
+    while (indexArray.length < 6){
+        const index = Math.floor(Math.random()*projects.length);
+        if (!indexArray.includes(index)){
+            indexArray.push(index);
+        }
+    }
+    return makeProjectArray(indexArray);
+}
+const randProjects = getProjects();
+
+export default randProjects;
