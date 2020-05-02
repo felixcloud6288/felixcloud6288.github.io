@@ -3,16 +3,13 @@ import Container from "react-bootstrap/Container";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import image from '../images/IMG_0053.JPG'
+import Header from "../components/Header"
 
 
 const Home= ()=>{
     return(
-        <Container>
-            <Row>
-                <Col>
-                    <h2>About Me</h2>
-                </Col>
-            </Row>
+        <div>
+            <Header page="About Me"/>
             <Row>
                 <Col>
                     <img id="image" src={image} alt="Matthew Weston"/>
@@ -38,7 +35,7 @@ const Home= ()=>{
                     </ul>
                 </Col>
             </Row>
-        </Container>
+        </div>
     )
 }
 export default Home;
