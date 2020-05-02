@@ -28,3 +28,7 @@
 [submodule "GameGuru"]
 	path = GameGuru
 	url = https://github.com/mweston6288/GameGuru.git
+[submodule "employeeDirectory"]
+	path = employeeDirectory
+	url = https://github.com/mweston6288/employeeDirectory.git
+
