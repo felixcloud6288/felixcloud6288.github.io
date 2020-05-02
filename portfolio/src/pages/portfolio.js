@@ -9,12 +9,16 @@ const portfolio = ()=>{
     return(
         <div>
             <Header page="portfolio" />
+            <p>A random assortment of my repo</p>
+
             {projects.map(project=>(
                 <Card className="text-center">
 
                     <a href={project.url}>{project.name}</a>
                 </Card>
             ))}
+            <p className="text-center">Additional projects can be found at <a href="https://github.com/mweston6288">my Github</a></p>
+
         </div>
     )
 }

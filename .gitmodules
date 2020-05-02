@@ -31,3 +31,6 @@
 [submodule "employeeDirectory"]
 	path = employeeDirectory
 	url = https://github.com/mweston6288/employeeDirectory.git
+[submodule "portfolio/passwordGen"]
+	path = portfolio/passwordGen
+	url = https://github.com/mweston6288/passwordGen.git

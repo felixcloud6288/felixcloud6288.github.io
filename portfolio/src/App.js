@@ -7,6 +7,7 @@ import Nav from "./components/nav"
 import Home from "./pages/home"
 import Portfolio from "./pages/portfolio"
 import Container from "react-bootstrap/Container";
+import Contacts from "./pages/contact";
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
         <Switch>
           <Route exact path="/" component={Home}/>
           <Route exact path="/portfolio" component={Portfolio}/>
+          <Route exact path="/contact" component={Contacts}/>
         </Switch>
         </Container>
       </div>
