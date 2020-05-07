@@ -8,7 +8,8 @@ If you'd like to demo some of my work, you can go to the portfolio page and samp
 of the links. You can also check my repositories on https://github.com/mweston6288.
 
 For the full protfolio page, go here: https://mweston6288.github.com/portfolio
-##Current portfolio projects:
+
+## Current portfolio projects:
 
 # Random password Generator:
 * Create a password consisting of capital and lowercase letters, numbers, and special 
