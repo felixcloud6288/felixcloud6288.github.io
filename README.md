@@ -5,40 +5,40 @@ coding and programming for about two years now and here's a demo of some of what
 been able to make.
 
 If you'd like to demo some of my work, you can go to the portfolio page and sample some 
-of the links. You can also check my repositories on https://github.com/mweston6288.
+of the links. You can also check my repositories [here](https://github.com/mweston6288).
 
-For the full protfolio page, go here: https://mweston6288.github.com/portfolio
+For the full protfolio page, [click here](https://mweston6288.github.com/portfolio)
 
-## Current portfolio projects:
+# Current portfolio projects:
 
-# Random password Generator:
+## Random password Generator:
 * Create a password consisting of capital and lowercase letters, numbers, and special 
 characters.
 
-# Coding Quiz
+## Coding Quiz
 * A short quiz on coding. Aim to get the high score by quickly and correctly answering 
 the questions.
 
-# Day Scheduler
+## Day Scheduler
 * A notebook to plan out the day. It tracks the time of day so you can't schedule 
 something in the past
 
-# Employee Directory
+## Employee Directory
 * An app that lets you add, sort, and filter employee information
 
-# Budget tracker
+## Budget tracker
 * An app that tracks income and expenses. The app works offline.
 
-# Game Guru
+## Game Guru
 * Search for games. Save them to a library or wishlist
 
-# Weather Report
+## Weather Report
 * Search for weather information
 
-# Note Taker
+## Note Taker
 * Make notes and reminders
 
-# Food Explorer
+## Food Explorer
 Look up nutrient information and recipes
 
 If you'd like to contact me, I can be reached via email at:
