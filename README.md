@@ -7,7 +7,7 @@ been able to make.
 If you'd like to demo some of my work, you can go to the portfolio page and sample some 
 of the links. You can also check my repositories [here](https://github.com/mweston6288).
 
-For the full protfolio page, [click here](https://mweston6288.github.com/portfolio)
+For the full portfolio page, [click here](https://mweston6288.github.com/portfolio/#/)
 
 # Current portfolio projects:
 
